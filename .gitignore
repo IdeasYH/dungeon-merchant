@@ -4,3 +4,7 @@ obj/
 .idea/
 *.log
 target/
+
+# Accidentally created directories (Windows path artifacts)
+"D:\\Code\\Java\\maven\\repository"
+":Code:Java:maven:repository"
