@@ -1,0 +1,56 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1775034338129,
+  "projectRoot": "/home/idea/Lesson/dungeon-merchant-claude",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {},
+  "hotPaths": [
+    {
+      "path": "README.md",
+      "accessCount": 1,
+      "lastAccessed": 1775044719267,
+      "type": "file"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-04-01-dungeon-merchant-backend-v1.md",
+      "accessCount": 1,
+      "lastAccessed": 1775051751166,
+      "type": "file"
+    },
+    {
+      "path": "pom.xml",
+      "accessCount": 1,
+      "lastAccessed": 1775054359851,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

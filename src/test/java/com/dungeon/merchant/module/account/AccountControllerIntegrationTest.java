@@ -16,11 +16,17 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
+@Sql(statements = {
+    "DELETE FROM account",
+    "INSERT INTO account (id, username, password, created_at, updated_at) VALUES (1, 'merchant', 'pw', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)",
+    "INSERT INTO account (id, username, password, created_at, updated_at) VALUES (2, 'blacksmith', 'pw', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)"
+})
 class AccountControllerIntegrationTest {
 
     @Autowired

@@ -1,1 +1,1 @@
--- Seed data is created through the auth API in integration tests.
+SELECT 1;

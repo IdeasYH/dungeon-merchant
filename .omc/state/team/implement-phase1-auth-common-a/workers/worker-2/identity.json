@@ -1,0 +1,7 @@
+{
+  "name": "worker-2",
+  "index": 2,
+  "role": "codex",
+  "assigned_tasks": [],
+  "working_dir": "/home/idea/Lesson/dungeon-merchant-claude"
+}

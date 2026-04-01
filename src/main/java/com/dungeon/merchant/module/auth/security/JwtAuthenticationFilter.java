@@ -38,6 +38,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (!StringUtils.hasText(authorizationHeader) || !authorizationHeader.startsWith("Bearer ")) {
+            if (tryAuthenticateFromRequestAttribute(request)) {
+                filterChain.doFilter(request, response);
+                return;
+            }
             filterChain.doFilter(request, response);
             return;
         }
@@ -46,13 +50,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             Claims claims = jwtTokenProvider.validateToken(token, TokenType.ACCESS);
             AuthUserPrincipal principal = jwtTokenProvider.toPrincipal(claims);
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                principal,
-                null,
-                Collections.emptyList()
-            );
-            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            authenticate(request, principal);
+            request.setAttribute("accountId", principal.accountId());
             filterChain.doFilter(request, response);
         } catch (IllegalArgumentException ex) {
             SecurityContextHolder.clearContext();
@@ -62,5 +61,24 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 new InsufficientAuthenticationException(ex.getMessage(), ex)
             );
         }
+    }
+
+    private boolean tryAuthenticateFromRequestAttribute(HttpServletRequest request) {
+        Object accountIdAttribute = request.getAttribute("accountId");
+        if (!(accountIdAttribute instanceof Number accountId)) {
+            return false;
+        }
+        authenticate(request, new AuthUserPrincipal(accountId.longValue(), String.valueOf(accountId.longValue())));
+        return true;
+    }
+
+    private void authenticate(HttpServletRequest request, AuthUserPrincipal principal) {
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+            principal,
+            null,
+            Collections.emptyList()
+        );
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }

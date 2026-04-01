@@ -1,0 +1,2 @@
+{"event_id":"1f2129ae-762a-4346-bcdc-05ee694a9b6d","team":"implement-phase1-auth-common-a","created_at":"2026-04-01T14:51:50.908Z","type":"task_completed","worker":"worker-2","task_id":"2","message_id":null}
+{"event_id":"9633318e-1dfb-4472-9112-4c12dad5b62e","team":"implement-phase1-auth-common-a","created_at":"2026-04-01T15:01:50.587Z","type":"shutdown_gate","worker":"leader-fixed","reason":"allowed=false total=3 pending=2 blocked=0 in_progress=0 completed=1 failed=0"}

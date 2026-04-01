@@ -1,0 +1,11 @@
+{
+  "subject": "Worker 2: Implement Phase1: Auth+Common(Agent-A), Account(Agent-B), Config(Agent",
+  "description": "Implement Phase1: Auth+Common(Agent-A), Account(Agent-B), Config(Agent-C). Read spec at docs/superpowers/specs/2026-04-01-dungeon-merchant-backend-v1.md. Spring Boot+MyBatis-Plus+PostgreSQL. Commit each module.",
+  "status": "completed",
+  "id": "2",
+  "depends_on": [],
+  "version": 3,
+  "created_at": "2026-04-01T14:51:41.702Z",
+  "owner": "worker-2",
+  "completed_at": "2026-04-01T14:51:50.905Z"
+}

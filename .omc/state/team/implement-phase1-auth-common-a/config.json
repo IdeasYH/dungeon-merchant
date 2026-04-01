@@ -1,0 +1,19 @@
+{
+  "name": "implement-phase1-auth-common-a",
+  "workers": [
+    {
+      "name": "worker-1",
+      "assigned_tasks": []
+    },
+    {
+      "name": "worker-2",
+      "assigned_tasks": []
+    },
+    {
+      "name": "worker-3",
+      "assigned_tasks": []
+    }
+  ],
+  "worker_count": 3,
+  "next_task_id": 4
+}
