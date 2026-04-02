@@ -15,9 +15,9 @@ describe('App', () => {
       },
     })
 
-    expect(wrapper.text()).toContain('Dungeon Merchant Console')
-    expect(wrapper.text()).toContain('Create an account')
-    expect(wrapper.text()).toContain('Sign in')
-    expect(wrapper.text()).toContain('Load account')
+    expect(wrapper.text()).toContain('Dungeon Merchant 控制台')
+    expect(wrapper.text()).toContain('创建账户')
+    expect(wrapper.text()).toContain('登录')
+    expect(wrapper.text()).toContain('加载账户')
   })
 })

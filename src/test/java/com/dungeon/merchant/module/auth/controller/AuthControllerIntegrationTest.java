@@ -112,7 +112,7 @@ class AuthControllerIntegrationTest {
                 .content(payload))
             .andExpect(status().isConflict())
             .andExpect(jsonPath("$.code").value(409))
-            .andExpect(jsonPath("$.message", containsString("already exists")));
+            .andExpect(jsonPath("$.message", containsString("账户名已存在")));
     }
 
     @Test
@@ -139,7 +139,7 @@ class AuthControllerIntegrationTest {
                         """))
             .andExpect(status().isUnauthorized())
             .andExpect(jsonPath("$.code").value(401))
-            .andExpect(jsonPath("$.message", containsString("Invalid username or password")));
+            .andExpect(jsonPath("$.message", containsString("账户名或密码错误")));
     }
 
     @RestController

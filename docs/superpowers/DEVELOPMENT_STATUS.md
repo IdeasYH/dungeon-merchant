@@ -252,3 +252,25 @@ frontend/             ✅ 新建
 ### P3 - 测试
 - [ ] 为新模块编写单元测试
 - [ ] 集成测试
+
+---
+
+## 八、本次更新记录（2026-04-02）
+
+### 已完成
+
+- 前端页面功能文案已改为中文，保留 `Dungeon Merchant`、`Guild Ledger`、`JWT`、`Pinia` 等专有名词英文
+- 已更新浏览器标题 `frontend/index.html` 与前端说明 `frontend/README.md`
+- 登录、注册、首页、顶部导航的中文文案测试已补齐
+- 前端兜底错误提示与认证失败提示已统一为中文
+
+### 验证结果
+
+- 前端自动化测试：已执行 `cd frontend && npm test`，结果 `4` 个测试文件、`11` 个测试全部通过
+- 后端认证自动化测试：尝试执行 `mvn -Dtest=AuthControllerIntegrationTest test`，当前 WSL 环境受限，返回 `JAVA_HOME environment variable is not defined correctly`
+- 实际接口联调：尝试从当前 WSL 环境访问 `http://localhost:8080/actuator/health`，返回连接失败；说明 Windows 侧服务当前对该环境不可达或未保持运行，需在 Windows 侧继续验证 `POST /api/auth/register` 与 `POST /api/auth/login`
+
+### 建议后续动作
+
+- 在 Windows 环境中保持后端服务运行后，执行注册与登录接口联调
+- 若需要彻底统一用户可见错误文案，可继续将认证外其他模块的英文错误提示改为中文

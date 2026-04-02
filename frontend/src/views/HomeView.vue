@@ -14,11 +14,11 @@ const summaryRows = computed(() => {
   }
 
   return [
-    { label: 'Account ID', value: String(authStore.account.id) },
-    { label: 'Username', value: authStore.account.username },
-    { label: 'Created', value: formatDate(authStore.account.createdAt) },
-    { label: 'Updated', value: formatDate(authStore.account.updatedAt) },
-    { label: 'Token', value: authStore.session?.tokenType || 'Bearer' },
+    { label: '账户 ID', value: String(authStore.account.id) },
+    { label: '账户名', value: authStore.account.username },
+    { label: '创建时间', value: formatDate(authStore.account.createdAt) },
+    { label: '更新时间', value: formatDate(authStore.account.updatedAt) },
+    { label: '令牌类型', value: authStore.session?.tokenType || 'Bearer' },
   ]
 })
 
@@ -50,7 +50,7 @@ function formatDate(value) {
     return '—'
   }
 
-  return new Intl.DateTimeFormat('en', {
+  return new Intl.DateTimeFormat('zh-CN', {
     dateStyle: 'medium',
     timeStyle: 'short',
   }).format(new Date(value))
@@ -62,22 +62,22 @@ function formatDate(value) {
     <div class="dashboard__grid">
       <BrandPanel
         eyebrow="Command Hall"
-        title="Your merchant house is live."
-        lead="This front page is wired to the live account endpoint and reflects the active JWT session stored in Pinia and local storage."
-        quote="“Count your coin, study the market, then strike before the dawn traders wake.”"
-        left-stat-label="API source"
+        title="你的 merchant house 已上线。"
+        lead="这个首页已接入真实账户接口，并展示当前保存在 Pinia 与本地存储中的 JWT 会话。"
+        quote="“先清点金币，研判市场，再在黎明商贩苏醒前出手。”"
+        left-stat-label="API 来源"
         left-stat-value="GET /api/account"
-        right-stat-label="State"
-        right-stat-value="Pinia + persisted session"
+        right-stat-label="状态"
+        right-stat-value="Pinia + 持久化会话"
       />
 
       <section class="summary-card stagger">
-        <p class="summary-card__eyebrow">Operator overview</p>
+        <p class="summary-card__eyebrow">操作概览</p>
         <h2 class="summary-card__title">
-          {{ authStore.account?.username || authStore.session?.username || 'Loading account' }}
+          {{ authStore.account?.username || authStore.session?.username || '加载账户中' }}
         </h2>
         <p class="content-card__copy">
-          Review the current authenticated account and refresh the ledger whenever the backend changes.
+          查看当前已认证账户，并在后端数据变化后刷新 Guild Ledger。
         </p>
 
         <div
@@ -85,13 +85,13 @@ function formatDate(value) {
           class="status-card status-card--error"
           role="alert"
         >
-          <h3 class="status-card__title">Account sync failed</h3>
+          <h3 class="status-card__title">账户同步失败</h3>
           <p class="status-card__copy">{{ authStore.error }}</p>
         </div>
 
         <div v-else-if="!authStore.account" class="status-card status-card--success">
-          <h3 class="status-card__title">Fetching details</h3>
-          <p class="status-card__copy">The ledger is contacting the backend now.</p>
+          <h3 class="status-card__title">正在获取详情</h3>
+          <p class="status-card__copy">Guild Ledger 正在连接后端。</p>
         </div>
 
         <div v-else class="detail-list">
@@ -107,10 +107,10 @@ function formatDate(value) {
 
         <div class="button-row">
           <button class="button button--primary" :disabled="authStore.busy" @click="refreshAccount">
-            Refresh account
+            刷新账户
           </button>
           <button class="button button--ghost" @click="leaveGuild">
-            Sign out
+            退出登录
           </button>
         </div>
       </section>

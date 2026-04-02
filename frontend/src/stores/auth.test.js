@@ -80,7 +80,7 @@ describe('auth store', () => {
     authApi.login.mockRejectedValue({
       response: {
         data: {
-          message: 'Invalid username or password',
+          message: '账户名或密码错误',
         },
       },
     })
@@ -94,7 +94,7 @@ describe('auth store', () => {
     ).rejects.toBeDefined()
 
     expect(store.isAuthenticated).toBe(false)
-    expect(store.error).toBe('Invalid username or password')
+    expect(store.error).toBe('账户名或密码错误')
     expect(readSession()).toBeNull()
   })
 })

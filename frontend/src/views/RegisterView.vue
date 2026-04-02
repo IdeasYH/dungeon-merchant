@@ -22,7 +22,7 @@ async function submit() {
   localError.value = ''
 
   if (form.password !== form.confirmPassword) {
-    localError.value = 'The confirmation seal does not match the passphrase.'
+    localError.value = '两次输入的密码不一致。'
     return
   }
 
@@ -41,21 +41,21 @@ async function submit() {
   <section class="scene-grid">
     <BrandPanel
       eyebrow="Founder's Annex"
-      title="Forge a new merchant house."
-      lead="Register a new guild identity and step straight into the command hall with tokens already issued."
-      quote="“The market only remembers the names bold enough to carve themselves into its doors.”"
-      left-stat-label="Theme"
-      left-stat-value="Dark velvet + molten gold"
-      right-stat-label="Layout"
-      right-stat-value="Off-axis and cinematic"
+      title="创建新的 merchant house。"
+      lead="注册新的 guild 身份，并在签发令牌后直接进入指挥大厅。"
+      quote="“市场只记得那些敢把名字刻进大门的人。”"
+      left-stat-label="主题"
+      left-stat-value="暗色天鹅绒 + 熔金"
+      right-stat-label="布局"
+      right-stat-value="偏轴且富有电影感"
     />
 
     <section class="content-card stagger">
       <div>
-        <p class="topbar__eyebrow">Commission a charter</p>
-        <h2 class="content-card__title">Create an account</h2>
+        <p class="topbar__eyebrow">签发文书</p>
+        <h2 class="content-card__title">创建账户</h2>
         <p class="content-card__copy">
-          Username must be 3–50 characters and password must be at least 8 characters.
+          账户名需为 3–50 个字符，密码至少 8 位。
         </p>
       </div>
 
@@ -64,44 +64,44 @@ async function submit() {
         class="status-card status-card--error"
         role="alert"
       >
-        <h3 class="status-card__title">Charter rejected</h3>
+        <h3 class="status-card__title">注册失败</h3>
         <p class="status-card__copy">{{ localError || authStore.error }}</p>
       </div>
 
       <form class="stack" @submit.prevent="submit">
         <label class="field">
-          <span class="field__label">Guild name</span>
+          <span class="field__label">账户名</span>
           <input
             v-model.trim="form.username"
             class="input"
             autocomplete="username"
             maxlength="50"
             minlength="3"
-            placeholder="merchant"
+            placeholder="请输入账户名"
             required
           >
         </label>
 
         <label class="field">
-          <span class="field__label">Passphrase</span>
+          <span class="field__label">密码</span>
           <input
             v-model="form.password"
             class="input"
             autocomplete="new-password"
             minlength="8"
-            placeholder="Password123!"
+            placeholder="请输入密码"
             required
             type="password"
           >
         </label>
 
         <label class="field">
-          <span class="field__label">Confirm passphrase</span>
+          <span class="field__label">确认密码</span>
           <input
             v-model="form.confirmPassword"
             class="input"
             autocomplete="new-password"
-            placeholder="Repeat your passphrase"
+            placeholder="请再次输入密码"
             required
             type="password"
           >
@@ -109,10 +109,10 @@ async function submit() {
 
         <div class="button-row">
           <button class="button button--primary" :disabled="!canSubmit" type="submit">
-            {{ authStore.busy ? 'Stamping your charter...' : 'Seal the charter' }}
+            {{ authStore.busy ? '正在签发文书...' : '完成注册' }}
           </button>
           <RouterLink class="button button--ghost" to="/login">
-            Sign in
+            登录
           </RouterLink>
         </div>
       </form>

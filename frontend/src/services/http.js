@@ -37,6 +37,6 @@ export function formatApiError(error) {
   return (
     error?.response?.data?.message ||
     error?.message ||
-    'The guild ledger rejected that request.'
+    'Guild Ledger 拒绝了这次请求。'
   )
 }

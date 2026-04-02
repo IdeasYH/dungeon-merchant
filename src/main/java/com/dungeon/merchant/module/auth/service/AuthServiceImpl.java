@@ -46,7 +46,7 @@ public class AuthServiceImpl implements AuthService {
         }
         String username = normalizeUsername(request.username());
         if (findByUsername(username) != null) {
-            throw new BusinessException(ErrorCode.CONFLICT, "Username already exists");
+            throw new BusinessException(ErrorCode.CONFLICT, "账户名已存在");
         }
 
         AccountEntity account = new AccountEntity();
@@ -66,7 +66,7 @@ public class AuthServiceImpl implements AuthService {
         String username = normalizeUsername(request.username());
         AccountEntity account = findByUsername(username);
         if (account == null || !passwordEncoder.matches(request.password(), account.getPassword())) {
-            throw new BusinessException(ErrorCode.UNAUTHORIZED, "Invalid username or password");
+            throw new BusinessException(ErrorCode.UNAUTHORIZED, "账户名或密码错误");
         }
         return buildAuthResponse(account);
     }
@@ -79,11 +79,11 @@ public class AuthServiceImpl implements AuthService {
         Claims claims = jwtTokenProvider.validateToken(request.refreshToken(), TokenType.REFRESH);
         Number accountId = claims.get("accountId", Number.class);
         if (accountId == null) {
-            throw new BusinessException(ErrorCode.UNAUTHORIZED, "Refresh token missing accountId");
+            throw new BusinessException(ErrorCode.UNAUTHORIZED, "刷新令牌缺少账户标识");
         }
         AccountEntity account = accountMapper.selectById(accountId.longValue());
         if (account == null) {
-            throw new BusinessException(ErrorCode.UNAUTHORIZED, "Account not found");
+            throw new BusinessException(ErrorCode.UNAUTHORIZED, "账户不存在");
         }
         return buildAuthResponse(account);
     }
@@ -97,11 +97,11 @@ public class AuthServiceImpl implements AuthService {
     public AccountEntity getCurrentAccount() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !(authentication.getPrincipal() instanceof AuthUserPrincipal principal)) {
-            throw new BusinessException(ErrorCode.UNAUTHORIZED, "Unauthorized");
+            throw new BusinessException(ErrorCode.UNAUTHORIZED, "未授权访问");
         }
         AccountEntity account = accountMapper.selectById(principal.accountId());
         if (account == null) {
-            throw new BusinessException(ErrorCode.UNAUTHORIZED, "Account not found");
+            throw new BusinessException(ErrorCode.UNAUTHORIZED, "账户不存在");
         }
         return account;
     }
