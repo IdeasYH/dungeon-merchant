@@ -1,10 +1,8 @@
 package com.dungeon.merchant.module.common.response;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public record ApiResponse<T>(
     int code,
     String message,

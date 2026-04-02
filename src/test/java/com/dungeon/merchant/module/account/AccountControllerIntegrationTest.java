@@ -62,14 +62,14 @@ class AccountControllerIntegrationTest {
     }
 
     @Test
-    void updateAccountRejectsDuplicateUsername() throws Exception {
+    void updateAccountRejectsDuplicateUsernameWithConflictStatus() throws Exception {
         mockMvc.perform(put("/api/account")
                 .requestAttr("accountId", 1L)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                     {"username":"blacksmith"}
                     """))
-            .andExpect(status().isOk())
+            .andExpect(status().isConflict())
             .andExpect(jsonPath("$.code").value(409))
             .andExpect(jsonPath("$.message").value("用户名已存在"));
     }
