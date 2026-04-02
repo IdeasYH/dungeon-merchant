@@ -3,7 +3,7 @@ package com.dungeon.merchant.module.account.controller;
 import com.dungeon.merchant.module.account.dto.AccountDto;
 import com.dungeon.merchant.module.account.dto.UpdateAccountRequest;
 import com.dungeon.merchant.module.account.service.AccountService;
-import com.dungeon.merchant.module.common.dto.ApiResponse;
+import com.dungeon.merchant.module.common.response.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;

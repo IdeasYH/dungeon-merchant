@@ -1,14 +1,14 @@
 package com.dungeon.merchant.module.account.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.dungeon.merchant.exception.BusinessException;
 import com.dungeon.merchant.module.account.dto.AccountDto;
 import com.dungeon.merchant.module.account.dto.UpdateAccountRequest;
 import com.dungeon.merchant.module.account.entity.Account;
 import com.dungeon.merchant.module.account.repository.AccountMapper;
 import com.dungeon.merchant.module.account.service.AccountService;
+import com.dungeon.merchant.module.common.exception.BusinessException;
+import com.dungeon.merchant.module.common.exception.ErrorCode;
 import java.time.LocalDateTime;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -54,7 +54,7 @@ public class AccountServiceImpl implements AccountService {
     private Account requireAccount(Long accountId) {
         Account account = accountMapper.selectById(accountId);
         if (account == null) {
-            throw new BusinessException(HttpStatus.NOT_FOUND, "账户不存在");
+            throw new BusinessException(ErrorCode.NOT_FOUND, "账户不存在");
         }
         return account;
     }
@@ -64,7 +64,7 @@ public class AccountServiceImpl implements AccountService {
             .eq(Account::getUsername, username)
             .ne(Account::getId, accountId));
         if (count != null && count > 0) {
-            throw new BusinessException(HttpStatus.CONFLICT, "用户名已存在");
+            throw new BusinessException(ErrorCode.CONFLICT, "用户名已存在");
         }
     }
 
